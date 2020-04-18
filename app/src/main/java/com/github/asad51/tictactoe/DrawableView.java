@@ -15,7 +15,7 @@ public class DrawableView extends View {
     private int shape = Constant.Shape.DEFAULT;
     private float width, height, w, h;
 
-    public DrawableView(final Context context, final AttributeSet attributeSet){
+    public DrawableView(final Context context, final AttributeSet attributeSet) {
         super(context, attributeSet);
 
         paint = new Paint();
@@ -23,11 +23,11 @@ public class DrawableView extends View {
         size = 15;
     }
 
-    public void drawShape(int shape){
+    public void drawShape(int shape) {
         this.shape = shape;
     }
 
-    public void drawShape(int shape, String color){
+    public void drawShape(int shape, String color) {
         this.shape = shape;
         this.color = color;
     }
@@ -46,7 +46,7 @@ public class DrawableView extends View {
         paint.setStrokeWidth(size);
         paint.setStyle(Paint.Style.STROKE);
         Log.d("TAG", "onDraw: draw  w " + width + " h " + height);
-        switch (shape){
+        switch (shape) {
             case Constant.Shape.O:
                 Log.d("TAG", "onDraw: w " + width + " h " + height);
                 canvas.drawCircle(width / 2, height / 2, w, paint);
