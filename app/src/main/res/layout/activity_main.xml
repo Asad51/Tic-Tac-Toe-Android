@@ -7,33 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/startTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:padding="5dp"
-        android:text="@string/start"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/winnerLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/playLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#0DA192"
-        app:layout_constraintBottom_toTopOf="@+id/winnerTextView"
+        app:layout_constraintBottom_toTopOf="@+id/statusTextView"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startTextView"
-        tools:visibility="visible">
+        app:layout_constraintTop_toBottomOf="@+id/startButton"
+        tools:visibility="invisible">
 
         <view
             android:id="@+id/grid0"
@@ -207,15 +191,72 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#0DA192"
-        app:layout_constraintBottom_toTopOf="@+id/winnerTextView"
+        app:layout_constraintBottom_toTopOf="@+id/statusTextView"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startTextView"
-        tools:visibility="invisible"/>
+        app:layout_constraintTop_toBottomOf="@+id/startButton"
+        tools:visibility="visible">
+
+        <view
+            android:id="@+id/winnerView"
+            class="com.github.asad51.tictactoe.DrawableView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".5"
+            tools:visibility="invisible" />
+
+        <view
+            android:id="@+id/drawViewO"
+            class="com.github.asad51.tictactoe.DrawableView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".5" />
+
+        <view
+            android:id="@+id/drawViewX"
+            class="com.github.asad51.tictactoe.DrawableView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintStart_toEndOf="@+id/drawViewO"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".5" />
+
+        <TextView
+            android:id="@+id/winnerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/winner"
+            android:textColor="#545454"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/winnerView"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/winnerTextView"
+        android:id="@+id/statusTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -228,4 +269,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/winnerLayout" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickStartButton"
+        android:text="@string/start"
+        app:layout_constraintBottom_toTopOf="@+id/winnerLayout"
+        app:layout_constraintEnd_toEndOf="@+id/playLayout"
+        app:layout_constraintStart_toStartOf="@+id/playLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/start" />
 </androidx.constraintlayout.widget.ConstraintLayout>

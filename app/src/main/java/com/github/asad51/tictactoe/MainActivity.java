@@ -1,17 +1,18 @@
 package com.github.asad51.tictactoe;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TableLayout;
-
 public class MainActivity extends AppCompatActivity {
-
+    TextView winnerTextView, statusTextView;
+    Button startButton;
     private ConstraintLayout winnerLayout, playLayout;
+    private DrawableView winnerView, drawViewO, drawViewX;
     private int winningPositions[][] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4,
             8}, {2, 4, 6}};
     private int gameStatus[], player, winner, hitCount;
@@ -27,11 +28,42 @@ public class MainActivity extends AppCompatActivity {
         winnerLayout.setVisibility(View.INVISIBLE);
         playLayout.setVisibility(View.VISIBLE);
 
+        winnerView = findViewById(R.id.winnerView);
+        drawViewO = findViewById(R.id.drawViewO);
+        drawViewX = findViewById(R.id.drawViewX);
+
+        winnerTextView = findViewById(R.id.winnerTextView);
+        statusTextView = findViewById(R.id.statusTextView);
+        startButton = findViewById(R.id.startButton);
+
+        initGame();
+    }
+
+    public void onClickStartButton(View view) {
+        initGame();
+    }
+
+    public void initGame() {
         player = Constant.Player.O;
         gameStatus = new int[9];
         for (int i = 0; i < 9; i++)
             gameStatus[i] = -1;
         isGameOver = false;
+        hitCount = 0;
+
+        int childCount = playLayout.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            DrawableView child = (DrawableView) playLayout.getChildAt(i);
+            child.drawShape(Constant.Shape.DEFAULT);
+            child.invalidate();
+        }
+        statusTextView.setVisibility(View.INVISIBLE);
+        startButton.setVisibility(View.INVISIBLE);
+        winnerLayout.setVisibility(View.INVISIBLE);
+        playLayout.setVisibility(View.VISIBLE);
+        winnerView.setVisibility(View.INVISIBLE);
+        drawViewO.setVisibility(View.INVISIBLE);
+        drawViewX.setVisibility(View.INVISIBLE);
     }
 
     public void onClickGrid(View view) {
@@ -42,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         if (player == Constant.Player.O) {
-            v.drawShape(Constant.Shape.O, "#F2EBD3");
+            v.drawShape(Constant.Shape.O);
         } else {
-            v.drawShape(Constant.Shape.X, "#545454");
+            v.drawShape(Constant.Shape.X);
         }
         v.invalidate();
 
@@ -55,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             isGameOver = true;
             showWinner();
         } else if (hitCount == 9) {
+            player = Constant.Winner.DRAW;
             isGameOver = true;
             showWinner();
         } else
@@ -77,6 +110,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showWinner() {
+        playLayout.setVisibility(View.INVISIBLE);
+        winnerLayout.setVisibility(View.VISIBLE);
 
+        if (player == Constant.Winner.O || player == Constant.Winner.X) {
+            showWinnerView(winnerView, player);
+            winnerTextView.setText(R.string.winner);
+        } else {
+            showWinnerView(drawViewO, Constant.Shape.O);
+            showWinnerView(drawViewX, Constant.Shape.X);
+            winnerTextView.setText(R.string.draw);
+        }
+
+        startButton.setVisibility(View.VISIBLE);
     }
+
+    private void showWinnerView(DrawableView view, int shape) {
+        view.setVisibility(View.VISIBLE);
+        view.drawShape(shape, 6, 30);
+        view.invalidate();
+    }
+
 }

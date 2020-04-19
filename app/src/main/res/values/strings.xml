@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">TicTacToe</string>
     <string name="winner">WINNER</string>
+    <string name="draw">DRAW</string>
     <string name="x_player">X</string>
     <string name="o_player">O</string>
-    <string name="start">Start</string>
+    <string name="start">START</string>
 </resources>

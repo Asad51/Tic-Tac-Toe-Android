@@ -9,6 +9,11 @@ public class Constant {
         public final static int X = 1;
     }
 
+    public final static class Color{
+        public final static String O = "#F2EBD3";
+        public final static String X = "#545454";
+    }
+
     public final static class Player {
         public final static int O = 0;
         public final static int X = 1;
@@ -17,6 +22,6 @@ public class Constant {
     public final static class Winner {
         public final static int O = 0;
         public final static int X = 1;
-        public final static int draw = 2;
+        public final static int DRAW = 2;
     }
 }
