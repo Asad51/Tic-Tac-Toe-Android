@@ -4,5 +4,8 @@
     <string name="draw">DRAW</string>
     <string name="x_player">X</string>
     <string name="o_player">O</string>
-    <string name="start">START</string>
+    <string name="start">Play Again</string>
+    <string name="reset">Reset</string>
+    <string name="restart">Restart</string>
+    <string name="status">O : 0, X: 0, Draw: 0</string>
 </resources>

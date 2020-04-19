@@ -5,18 +5,47 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0DA192"
     tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/restartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:onClick="onClickRestart"
+        android:padding="5dp"
+        android:text="@string/restart"
+        android:textColor="#545454"
+        app:layout_constraintBottom_toTopOf="@+id/playLayout"
+        app:layout_constraintEnd_toStartOf="@+id/resetButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:onClick="onClickReset"
+        android:padding="5dp"
+        android:text="@string/reset"
+        android:textColor="#545454"
+        app:layout_constraintBottom_toTopOf="@+id/playLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/restartButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/playLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#0DA192"
-        app:layout_constraintBottom_toTopOf="@+id/statusTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="invisible">
 
         <view
@@ -184,19 +213,35 @@
             app:layout_constraintTop_toBottomOf="@id/grid5"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent=".32" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/winnerLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#0DA192"
-        app:layout_constraintBottom_toTopOf="@+id/statusTextView"
+        android:background="#14BDAC"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:onClick="onClickStartButton"
+            android:padding="5dp"
+            android:text="@string/start"
+            android:textColor="#545454"
+            app:layout_constraintBottom_toTopOf="@+id/winnerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/start" />
 
         <view
             android:id="@+id/winnerView"
@@ -263,22 +308,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/winner"
+        android:text="@string/status"
+        android:textColor="#545454"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/winnerLayout" />
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickStartButton"
-        android:text="@string/start"
-        app:layout_constraintBottom_toTopOf="@+id/winnerLayout"
-        app:layout_constraintEnd_toEndOf="@+id/playLayout"
-        app:layout_constraintStart_toStartOf="@+id/playLayout"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/start" />
 </androidx.constraintlayout.widget.ConstraintLayout>
